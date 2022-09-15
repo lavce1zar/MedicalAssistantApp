@@ -15,6 +15,8 @@ namespace MedicalAssistant.MvcApp
             var connectionString = builder.Configuration.GetConnectionString("Default");
             builder.Services.AddDbContext<MedicalAssistantContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

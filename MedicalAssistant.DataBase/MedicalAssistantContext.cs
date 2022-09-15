@@ -18,5 +18,10 @@ namespace MedicalAssistant.DataBase
         public DbSet<FormOfMedicine> FormsOfMedicine { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<PrescribedMedication> PrescribedMedications { get; set; }
+
+        public MedicalAssistantContext(DbContextOptions<MedicalAssistantContext> options)
+        : base(options)
+        {
+        }
     }
 }
