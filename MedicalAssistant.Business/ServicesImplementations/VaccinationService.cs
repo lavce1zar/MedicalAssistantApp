@@ -2,6 +2,7 @@
 using MedicalAssiastant.Core.Abstractions;
 using MedicalAssiastant.Core.DataTransferObjects;
 using MedicalAssistant.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedicalAssistant.MvcApp.Services
 {
@@ -10,14 +11,20 @@ namespace MedicalAssistant.MvcApp.Services
         private readonly MedicalAssistantContext _databaseContext;
         private readonly IMapper _mapper;
 
-        public VaccinationService(MedicalAssistantContext databaseContext)
+        public VaccinationService(MedicalAssistantContext databaseContext, IMapper mapper)
         {
             _databaseContext = databaseContext;
+            _mapper = mapper;
         }
 
-        public Task<List<VaccinationDto>> GetVaccinationsByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
+        public async Task<List<VaccinationDto>> GetVaccinationsAsync() => await _databaseContext.Vaccinations.Select(vac => _mapper.Map<VaccinationDto>(vac)).ToListAsync();
+
+        public async Task<List<VaccinationDto>> GetVaccinationsByPatientIdAsync(Guid patientId)
         {
-            throw new NotImplementedException();
+            return await _databaseContext.Vaccinations
+                .Select(vac => _mapper.Map<VaccinationDto>(vac))
+                .Where(vac => vac.PatientId == patientId)
+                .ToListAsync();
         }
     }
 }

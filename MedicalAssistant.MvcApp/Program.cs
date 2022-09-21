@@ -1,4 +1,6 @@
+using MedicalAssiastant.Core.Abstractions;
 using MedicalAssistant.DataBase;
+using MedicalAssistant.MvcApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalAssistant.MvcApp
@@ -13,9 +15,12 @@ namespace MedicalAssistant.MvcApp
             builder.Services.AddControllersWithViews();
 
             var connectionString = builder.Configuration.GetConnectionString("Default");
+
             builder.Services.AddDbContext<MedicalAssistantContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            builder.Services.AddScoped<IVaccinationService, VaccinationService>();
 
             var app = builder.Build();
 

@@ -1,0 +1,37 @@
+﻿@model List<VaccinationModel>
+
+@{
+    ViewData["Title"] = "Vaccinations";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Vaccination</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <h5 class="bg-primary text-white text-center m-2 p-2">Vaccinations</h5>
+    <form asp-action="RsvpForm" method="post" class="m-2">
+        <div class="text-center p-2">
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                    <tr><th>Name</th><th>Date of vaccination</th><th>Date of next vaccination</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var vac in Model!)
+                    {
+                        <tr>
+                            <td>@vac.Id</td>
+                            <td>@vac.DateOfVaccination</td>
+                            <td>@vac.DateOfNextVaccination</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

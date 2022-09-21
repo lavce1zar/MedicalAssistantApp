@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MedicalAssiastant.Core\MedicalAssistant.Core.csproj" />
+    <ProjectReference Include="..\MedicalAssistant.Business\MedicalAssistant.Business.csproj" />
     <ProjectReference Include="..\MedicalAssistant.DataBase\MedicalAssistant.DataBase.csproj" />
   </ItemGroup>
 

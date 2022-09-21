@@ -9,6 +9,8 @@ namespace MedicalAssiastant.Core.Abstractions
 {
     public interface IVaccinationService
     {
-        Task<List<VaccinationDto>> GetVaccinationsByPageNumberAndPageSizeAsync (int pageNumber, int pageSize);
+        Task<List<VaccinationDto>> GetVaccinationsAsync();
+
+        Task<List<VaccinationDto>> GetVaccinationsByPatientIdAsync(Guid patientId);
     }
 }
